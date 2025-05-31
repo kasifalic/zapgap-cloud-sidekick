@@ -354,10 +354,10 @@ const Index = () => {
       <section id="features" className="py-32 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-20">
-            <h2 className="text-5xl font-display font-black text-white mb-6 gradient-text">
-              Why DevOps Teams Choose ZapGap
+            <h2 className="text-5xl mb-6" style={{ fontFamily: '"Space Grotesk", sans-serif', fontWeight: 700, letterSpacing: '0.02em' }}>
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#3ABCF7] via-[#5B7CF7] to-[#8B2FF8] animate-text-shimmer bg-[length:200%_auto]">Why DevOps Teams Choose ZapGap</span>
             </h2>
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-400 max-w-3xl mx-auto" style={{ fontFamily: '"Space Grotesk", sans-serif', letterSpacing: '0.01em' }}>
               Revolutionary AI-powered automation that transforms cloud operations with enterprise-grade intelligence
             </p>
           </div>
@@ -397,8 +397,10 @@ const Index = () => {
                     </div>
                     <div className={`absolute inset-0 bg-gradient-to-br ${benefit.gradient} rounded-3xl blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-500`}></div>
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-4">{benefit.title}</h3>
-                  <p className="text-gray-400 leading-relaxed">{benefit.description}</p>
+                  <h3 className="text-2xl mb-4" style={{ fontFamily: '"Space Grotesk", sans-serif', fontWeight: 600, letterSpacing: '0.01em' }}>
+                    <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#3ABCF7] to-[#8B2FF8]">{benefit.title}</span>
+                  </h3>
+                  <p className="text-gray-400 leading-relaxed" style={{ fontFamily: '"Space Grotesk", sans-serif' }}>{benefit.description}</p>
                 </CardContent>
               </Card>
             ))}
@@ -410,10 +412,10 @@ const Index = () => {
       <section id="platform" className="py-32 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-20">
-            <h2 className="text-5xl font-display font-black text-white mb-6 gradient-text">
-              The ZapGap Platform
+            <h2 className="text-5xl mb-6" style={{ fontFamily: '"Space Grotesk", sans-serif', fontWeight: 700, letterSpacing: '0.02em' }}>
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#3ABCF7] via-[#5B7CF7] to-[#8B2FF8] animate-text-shimmer bg-[length:200%_auto]">The ZapGap Platform</span>
             </h2>
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-400 max-w-3xl mx-auto" style={{ fontFamily: '"Space Grotesk", sans-serif', letterSpacing: '0.01em' }}>
               Agent-Orchestrator-Cloud architecture that evolves with your infrastructure
             </p>
           </div>
@@ -455,12 +457,14 @@ const Index = () => {
                       <div className="absolute inset-0 bg-gradient-to-br from-[#3ABCF7] to-[#8B2FF8] rounded-2xl blur-xl opacity-0 group-hover:opacity-40 transition-opacity duration-500"></div>
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-2xl font-bold text-white mb-4">{feature.title}</h3>
-                      <p className="text-gray-400 mb-6 leading-relaxed">{feature.description}</p>
+                      <h3 className="text-2xl mb-4" style={{ fontFamily: '"Space Grotesk", sans-serif', fontWeight: 600, letterSpacing: '0.01em' }}>
+                        <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#3ABCF7] to-[#8B2FF8]">{feature.title}</span>
+                      </h3>
+                      <p className="text-gray-400 mb-6 leading-relaxed" style={{ fontFamily: '"Space Grotesk", sans-serif' }}>{feature.description}</p>
                       <ul className="space-y-2">
                         {feature.features.map((item, idx) => (
-                          <li key={idx} className="flex items-center text-gray-300">
-                            <div className="w-2 h-2 bg-gradient-to-r from-[#3ABCF7] to-[#8B2FF8] rounded-full mr-3"></div>
+                          <li key={idx} className="flex items-center text-gray-300" style={{ fontFamily: '"Space Grotesk", sans-serif' }}>
+                            <div className="w-2 h-2 bg-gradient-to-r from-[#3ABCF7] to-[#8B2FF8] rounded-full mr-3 animate-pulse"></div>
                             {item}
                           </li>
                         ))}
@@ -478,10 +482,10 @@ const Index = () => {
       <section id="use-cases" className="py-32 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-20">
-            <h2 className="text-5xl font-display font-black text-white mb-6 gradient-text">
-              Built for Every Cloud Team
+            <h2 className="text-5xl mb-6" style={{ fontFamily: '"Space Grotesk", sans-serif', fontWeight: 700, letterSpacing: '0.02em' }}>
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#3ABCF7] via-[#5B7CF7] to-[#8B2FF8] animate-text-shimmer bg-[length:200%_auto]">Built for Every Cloud Team</span>
             </h2>
-            <p className="text-xl text-gray-400">
+            <p className="text-xl text-gray-400" style={{ fontFamily: '"Space Grotesk", sans-serif', letterSpacing: '0.01em' }}>
               See how ZapGap transforms operations across different roles
             </p>
           </div>
@@ -497,6 +501,7 @@ const Index = () => {
                     ? "btn-futuristic"
                     : "glass border-white/30 text-white hover:bg-white/10"
                 } transition-all duration-300 text-lg px-8 py-4`}
+                style={{ fontFamily: '"Space Grotesk", sans-serif', letterSpacing: '0.01em' }}
               >
                 <useCase.icon className="w-5 h-5 mr-2" />
                 {useCase.title}
@@ -528,25 +533,31 @@ const Index = () => {
                         );
                       })()}
                     </motion.div>
-                    <h4 className="text-xl font-bold text-white">Problem</h4>
+                    <h4 className="text-xl" style={{ fontFamily: '"Space Grotesk", sans-serif', fontWeight: 600, letterSpacing: '0.01em' }}>
+                      <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#3ABCF7] to-[#8B2FF8]">Problem</span>
+                    </h4>
                   </div>
-                  <p className="text-gray-400 leading-relaxed">{useCases[activeUseCase].problem}</p>
+                  <p className="text-gray-400 leading-relaxed" style={{ fontFamily: '"Space Grotesk", sans-serif' }}>{useCases[activeUseCase].problem}</p>
                 </div>
                 <div className="space-y-6">
                   <div className="flex items-center space-x-4">
                     <div className="w-12 h-12 bg-gradient-to-r from-[#3ABCF7] to-[#8B2FF8] rounded-xl flex items-center justify-center">
                       <Zap className="w-6 h-6 text-white" />
                     </div>
-                    <h4 className="text-xl font-bold text-white">ZapGap Solution</h4>
+                    <h4 className="text-xl" style={{ fontFamily: '"Space Grotesk", sans-serif', fontWeight: 600, letterSpacing: '0.01em' }}>
+                      <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#3ABCF7] to-[#8B2FF8]">ZapGap Solution</span>
+                    </h4>
                   </div>
-                  <p className="text-gray-400 leading-relaxed">{useCases[activeUseCase].solution}</p>
+                  <p className="text-gray-400 leading-relaxed" style={{ fontFamily: '"Space Grotesk", sans-serif' }}>{useCases[activeUseCase].solution}</p>
                 </div>
                 <div className="space-y-6">
                   <div className="flex items-center space-x-4">
                     <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-400 rounded-xl flex items-center justify-center">
                       <Target className="w-6 h-6 text-white" />
                     </div>
-                    <h4 className="text-xl font-bold text-white">Impact</h4>
+                    <h4 className="text-xl" style={{ fontFamily: '"Space Grotesk", sans-serif', fontWeight: 600, letterSpacing: '0.01em' }}>
+                      <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-500 to-emerald-400">Impact</span>
+                    </h4>
                   </div>
                   <motion.div 
                     className="text-4xl font-black text-[#3ABCF7] glow-text-blue mt-4"
