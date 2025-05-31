@@ -1,14 +1,19 @@
-
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
-import { Zap, Shield, Cog, Cloud, Users, Target, Gauge, Lock, Github, Linkedin, Twitter, MessageCircle, Sparkles, Brain, Cpu, Network } from "lucide-react";
+import { Zap, Shield, Cog, Cloud, Users, Target, Gauge, Lock, Github, Linkedin, Twitter, MessageCircle, Sparkles, Brain, Cpu, Network, ChevronRight, CheckCircle, AlertCircle } from "lucide-react";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 
 const Index = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeUseCase, setActiveUseCase] = useState(0);
   const [email, setEmail] = useState("");
+  
+  // Scroll animation values
+  const { scrollYProgress } = useScroll();
+  const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0.8]);
+  const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.95]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -60,22 +65,40 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white overflow-x-hidden">
+    <div className="min-h-screen bg-black text-white overflow-x-hidden relative">
+      {/* Background gradient elements */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 opacity-50">
+        <div className="absolute top-[-300px] right-[-300px] w-[600px] h-[600px] rounded-full bg-gradient-to-r from-purple-700/30 to-blue-700/20 blur-[120px] animate-pulse" style={{ animationDuration: '8s' }}></div>
+        <div className="absolute bottom-[-200px] left-[-200px] w-[500px] h-[500px] rounded-full bg-gradient-to-r from-cyan-700/20 to-teal-700/10 blur-[100px] animate-pulse" style={{ animationDuration: '10s' }}></div>
+        <div className="absolute top-[30%] left-[40%] w-[400px] h-[400px] rounded-full bg-gradient-to-r from-pink-700/15 to-red-700/10 blur-[80px] animate-pulse" style={{ animationDuration: '12s' }}></div>
+      </div>
       {/* Header */}
-      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled 
-          ? "glass-dark border-b border-white/10" 
-          : "bg-transparent"
-      }`}>
+      <motion.header 
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+          isScrolled 
+            ? "glass-dark border-b border-white/10" 
+            : "bg-transparent"
+        }`}
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
-            <div className="flex items-center">
-              <img 
+            <motion.div 
+              className="flex items-center"
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <motion.img 
                 src="/lovable-uploads/145c593f-1a1b-45a8-914e-d151ce53c695.png" 
                 alt="ZapGap Logo" 
                 className="h-10 w-auto brightness-0 invert"
+                initial={{ rotate: -5 }}
+                animate={{ rotate: 0 }}
+                transition={{ duration: 0.5 }}
               />
-            </div>
+            </motion.div>
             
             <nav className="hidden md:flex items-center space-x-8">
               <a href="#platform" className="text-gray-300 hover:text-[#3ABCF7] transition-all duration-300 font-medium">Platform</a>
@@ -86,19 +109,30 @@ const Index = () => {
             </nav>
 
             <div className="flex items-center space-x-4">
-              <Button variant="ghost" className="text-gray-300 hover:text-[#3ABCF7] hover:bg-white/10 border border-white/20">
-                Sign In
-              </Button>
-              <Button className="btn-futuristic">
-                Join the Waitlist
-              </Button>
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Button variant="ghost" className="text-gray-300 hover:text-[#3ABCF7] hover:bg-white/10 border border-white/20 backdrop-blur-sm">
+                  Sign In
+                </Button>
+              </motion.div>
+              <motion.div 
+                whileHover={{ scale: 1.05 }} 
+                whileTap={{ scale: 0.95 }}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.2 }}
+              >
+                <Button className="btn-futuristic relative overflow-hidden group">
+                  <span className="relative z-10">Join the Waitlist</span>
+                  <span className="absolute inset-0 bg-gradient-to-r from-blue-600 to-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                </Button>
+              </motion.div>
             </div>
           </div>
         </div>
-      </header>
+      </motion.header>
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center particles-bg">
+      <section className="relative min-h-screen flex items-center justify-center particles-bg z-10">
         <div className="absolute inset-0 gradient-primary opacity-20"></div>
         
         {/* Ultra-modern floating elements */}
@@ -115,7 +149,7 @@ const Index = () => {
                 ZapGap
               </h1>
               <div className="text-3xl md:text-5xl font-bold text-white mb-6">
-                Your AI Cloud Ops Sidekick
+                Zap the Gap of Your Infrastructure
               </div>
             </div>
             
@@ -123,40 +157,100 @@ const Index = () => {
               Bridge the gap between complex infrastructure and effortless operations with next-generation AI automation.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-6 justify-center animate-slide-up delay-400">
-              <Button size="lg" className="btn-futuristic text-xl px-12 py-6">
-                <Sparkles className="w-6 h-6 mr-3" />
-                Join the Waitlist
-              </Button>
-              <Button 
-                size="lg" 
-                variant="outline" 
-                className="glass border-white/30 text-white hover:bg-white/10 text-xl px-12 py-6 neo-brutalism"
+            {/* Modern 3D Action Buttons */}
+            <motion.div 
+              className="flex flex-col md:flex-row gap-8 justify-center mb-16"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              <motion.div
+                whileHover={{ scale: 1.05, y: -5 }}
+                whileTap={{ scale: 0.98 }}
+                className="relative group"
               >
-                <Brain className="w-6 h-6 mr-3" />
-                Explore AI Features
-              </Button>
-            </div>
+                <div className="absolute inset-0 bg-gradient-to-r from-[#3ABCF7] to-[#5B7CF7] rounded-xl blur-xl opacity-70 group-hover:opacity-100 transition-all duration-300 -z-10"></div>
+                <Button 
+                  className="w-full md:w-auto bg-gradient-to-r from-[#3ABCF7] to-[#5B7CF7] border-0 text-white font-bold rounded-xl px-10 py-7 text-lg shadow-[0_8px_30px_rgb(58,188,247,0.3)] relative overflow-hidden"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#3ABCF7]/20 to-[#5B7CF7]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="relative flex items-center justify-center">
+                    <Sparkles className="w-5 h-5 mr-3 animate-pulse" />
+                    <span>Get Early Access</span>
+                  </div>
+                </Button>
+              </motion.div>
+              
+              <motion.div
+                whileHover={{ scale: 1.05, y: -5 }}
+                whileTap={{ scale: 0.98 }}
+                className="relative group"
+              >
+                <div className="absolute inset-0 bg-[#111]/50 rounded-xl blur-lg opacity-70 group-hover:opacity-100 transition-all duration-300 -z-10"></div>
+                <Button 
+                  variant="outline"
+                  className="w-full md:w-auto bg-[#111]/80 backdrop-blur-md border border-white/10 text-white font-bold rounded-xl px-10 py-7 text-lg relative overflow-hidden group-hover:border-white/30 transition-all duration-300"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#3ABCF7]/5 to-[#8B2FF8]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="relative flex items-center justify-center">
+                    <Brain className="w-5 h-5 mr-3" />
+                    <span>View Demo</span>
+                  </div>
+                </Button>
+              </motion.div>
+            </motion.div>
 
-            {/* Futuristic Hero Visual */}
-            <div className="mt-20 relative animate-slide-up delay-600">
-              <div className="modern-card p-12 max-w-4xl mx-auto">
-                <div className="flex items-center justify-center space-x-8 text-[#3ABCF7]">
-                  <div className="relative">
-                    <Cpu className="w-16 h-16 animate-pulse-glow" />
-                    <div className="absolute -top-2 -right-2 w-6 h-6 bg-[#8B2FF8] rounded-full animate-ping"></div>
-                  </div>
-                  <div className="text-2xl font-bold animate-shimmer bg-gradient-to-r from-[#3ABCF7] via-white to-[#8B2FF8] bg-clip-text text-transparent bg-[length:200%_100%]">
-                    AI Assistant Processing...
-                  </div>
-                  <div className="flex space-x-2">
-                    <div className="w-4 h-4 bg-[#3ABCF7] rounded-full animate-bounce"></div>
-                    <div className="w-4 h-4 bg-[#5B7CF7] rounded-full animate-bounce delay-100"></div>
-                    <div className="w-4 h-4 bg-[#8B2FF8] rounded-full animate-bounce delay-200"></div>
-                  </div>
+            {/* Modern Interactive Terminal */}
+            <motion.div 
+              className="relative max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-[0_20px_80px_rgba(0,0,0,0.7)]"
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+            >
+              {/* Terminal Header */}
+              <div className="bg-[#1a1a1a] p-4 flex items-center justify-between border-b border-white/5">
+                <div className="flex items-center space-x-2">
+                  <div className="w-3 h-3 rounded-full bg-[#ff5f57]"></div>
+                  <div className="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
+                  <div className="w-3 h-3 rounded-full bg-[#28ca41]"></div>
+                </div>
+                <div className="text-sm text-gray-400 font-mono">zapgap-terminal ~ infrastructure-scan</div>
+                <div className="w-4"></div>
+              </div>
+              
+              {/* Terminal Content */}
+              <div className="bg-[#111]/90 backdrop-blur-md p-6 font-mono text-sm">
+                <div className="flex items-center text-[#3ABCF7] mb-3">
+                  <ChevronRight className="w-4 h-4 mr-2" />
+                  <span>Initializing ZapGap infrastructure scanner...</span>
+                </div>
+                
+                <div className="text-green-400 mb-3 flex items-center">
+                  <CheckCircle className="w-4 h-4 mr-2" />
+                  <span>Connected to cloud environment</span>
+                </div>
+                
+                <div className="text-yellow-400 mb-3 flex items-center">
+                  <AlertCircle className="w-4 h-4 mr-2" />
+                  <span>Detected 3 infrastructure gaps in production</span>
+                </div>
+                
+                <div className="flex items-center mb-4">
+                  <motion.div 
+                    className="w-4 h-4 rounded-full bg-[#3ABCF7] mr-3"
+                    animate={{ scale: [1, 1.2, 1] }}
+                    transition={{ duration: 1.5, repeat: Infinity }}
+                  />
+                  <span className="text-white font-semibold">AI model analyzing infrastructure patterns</span>
+                </div>
+                
+                <div className="flex items-center text-[#8B2FF8] font-bold">
+                  <span className="mr-3 text-purple-500">&gt;</span>
+                  <span>Generating automated remediation plan...</span>
+                  <span className="ml-1 animate-blink">|</span>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -320,9 +414,25 @@ const Index = () => {
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
                 <div className="space-y-6">
                   <div className="flex items-center space-x-4">
-                    <div className={`w-12 h-12 bg-gradient-to-r ${useCases[activeUseCase].gradient} rounded-xl flex items-center justify-center`}>
-                      <useCases[activeUseCase].icon className="w-6 h-6 text-white" />
-                    </div>
+                    <motion.div 
+                      className={`w-12 h-12 bg-gradient-to-r ${useCases[activeUseCase].gradient} rounded-xl flex items-center justify-center`}
+                      initial={{ scale: 0.8, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ duration: 0.5 }}
+                    >
+                      {(() => {
+                        const IconComponent = useCases[activeUseCase].icon;
+                        return (
+                          <motion.div
+                            initial={{ rotate: 0 }}
+                            animate={{ rotate: 360 }}
+                            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                          >
+                            <IconComponent className="w-6 h-6 text-white" />
+                          </motion.div>
+                        );
+                      })()}
+                    </motion.div>
                     <h4 className="text-xl font-bold text-white">Problem</h4>
                   </div>
                   <p className="text-gray-400 leading-relaxed">{useCases[activeUseCase].problem}</p>
@@ -343,9 +453,14 @@ const Index = () => {
                     </div>
                     <h4 className="text-xl font-bold text-white">Impact</h4>
                   </div>
-                  <div className="text-4xl font-black gradient-text glow-intense">
+                  <motion.div 
+                    className="text-4xl font-black text-[#3ABCF7] glow-text-blue mt-4"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                  >
                     {useCases[activeUseCase].impact}
-                  </div>
+                  </motion.div>
                 </div>
               </div>
             </CardContent>
@@ -359,9 +474,23 @@ const Index = () => {
         <div className="absolute inset-0 bg-black/20"></div>
         
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-5xl md:text-6xl font-display font-black text-white mb-8 text-shadow-glow">
-            Join ZapGap Beta
-          </h2>
+          <motion.h1 
+            className="text-5xl md:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-[#3ABCF7] to-[#7F5AF8]"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <span className="inline-block">Cloud Infrastructure,</span>
+            <br />
+            <motion.span 
+              className="text-white inline-block"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
+              Simplified by AI
+            </motion.span>
+          </motion.h1>
           <p className="text-2xl text-white/90 mb-12 leading-relaxed">
             Be among the first to experience the future of cloud operations
           </p>
@@ -375,13 +504,18 @@ const Index = () => {
               className="flex-1 bg-white/10 border-white/30 text-white placeholder:text-white/60 text-lg py-6 px-6 glass"
               required
             />
-            <Button 
-              type="submit"
-              className="btn-futuristic text-lg px-10 py-6"
-            >
-              <Sparkles className="w-5 h-5 mr-2" />
-              Join Waitlist
-            </Button>
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <Button className="btn-futuristic w-full sm:w-auto text-lg py-6 px-8 relative overflow-hidden group">
+                <span className="relative z-10">Get Early Access</span>
+                <span className="absolute inset-0 bg-gradient-to-r from-blue-600 to-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                <motion.span 
+                  className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-cyan-400/20 rounded-full"
+                  initial={{ scale: 0, opacity: 0.5 }}
+                  animate={{ scale: 1.5, opacity: 0 }}
+                  transition={{ duration: 1.5, repeat: Infinity, repeatType: "loop" }}
+                />
+              </Button>
+            </motion.div>
           </form>
         </div>
       </section>
@@ -389,12 +523,21 @@ const Index = () => {
       {/* Footer */}
       <footer className="bg-[#111111] text-white py-16 border-t border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          >
             <div className="col-span-1 md:col-span-2">
-              <img 
+              <motion.img 
                 src="/lovable-uploads/145c593f-1a1b-45a8-914e-d151ce53c695.png" 
                 alt="ZapGap Logo" 
-                className="h-10 w-auto mb-6 brightness-0 invert"
+                className="h-10 w-auto brightness-0 invert mb-6"
+                initial={{ scale: 1.1, opacity: 0.8 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 1.5 }}
               />
               <p className="text-gray-400 max-w-md leading-relaxed">
                 Bridging the gap between complex infrastructure and effortless operations with next-generation AI automation.
@@ -418,7 +561,7 @@ const Index = () => {
                 <li><a href="#contact" className="hover:text-[#3ABCF7] transition-colors">Contact</a></li>
               </ul>
             </div>
-          </div>
+          </motion.div>
           
           <div className="border-t border-gray-800 mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center">
             <p className="text-gray-400">© 2024 ZapGap. All rights reserved.</p>
