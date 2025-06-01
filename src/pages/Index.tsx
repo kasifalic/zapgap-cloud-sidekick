@@ -355,6 +355,9 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Platform Explainer */}
+      <PlatformSection />
+
       {/* Features Section */}
       <section id="features" className="py-32 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -475,9 +478,6 @@ const Index = () => {
           </div>
         </div>
       </section>
-
-      {/* Platform Explainer */}
-      <PlatformSection />
 
       {/* Use Case Highlights */}
       <section id="use-cases" className="py-32 relative">
