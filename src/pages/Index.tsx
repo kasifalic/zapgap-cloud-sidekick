@@ -149,8 +149,8 @@ const Index = () => {
             
             <nav className="hidden md:flex items-center space-x-1">
               {[
-                { name: 'Features', href: '#features' },
                 { name: 'Platform', href: '#platform' },
+                { name: 'Features', href: '#features' },
                 { name: 'Use Cases', href: '#use-cases' }
               ].map((item) => (
                 <a 
