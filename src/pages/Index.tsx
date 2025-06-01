@@ -87,7 +87,7 @@ const Index = () => {
       gradient: "from-blue-500 to-cyan-400"
     },
     {
-      title: "IT Leadership",
+      title: "LEADERSHIP",
       problem: "The CTO and IT Head noticed rising cloud costs with many underutilized resources (idle VMs, unattached storage volumes, forgotten dev/test environments running 24/7). Manually tracking and managing cloud sprawl was difficult, and monthly cloud bills were exceeding forecasts.",
       solution: "ZapGap was employed as a vigilant cost optimizer. It continuously scanned the cloud accounts for low-hanging fruit – instances running under 5% CPU, obsolete snapshots, or dev machines left on over the weekend. Through natural language or scheduled reports, ZapGap would surface opportunities and execute the clean-up tasks with proper logging and notifications.",
       impact: "25% reduction in AWS costs",
@@ -95,7 +95,7 @@ const Index = () => {
       gradient: "from-orange-500 to-red-400"
     },
     {
-      title: "IT Admin/SecOps",
+      title: "IT Teams",
       problem: "An IT administrator was tasked with keeping the cloud environment compliant with security and operational best practices. This included enforcing encryption, using approved machine images, and adhering to regulatory standards. Manually auditing these across dozens of accounts and resources was tedious and error-prone, leading to occasional compliance gaps.",
       solution: "ZapGap was configured with a set of policy rules and compliance checks. It continuously scans the infrastructure for deviations: if a developer creates a resource that violates a rule, ZapGap flags it or auto-corrects it per policy. For example, when a new S3 bucket was created without encryption, ZapGap immediately identified it and applied the encryption setting, then notified the team.",
       impact: "Near-zero security incidents",
@@ -505,7 +505,7 @@ const Index = () => {
                   "DevOps Engineers",
                   "SREs",
                   "Platform Teams",
-                  "IT Admins",
+                  "IT Teams",
                   "Cloud Architects"
                 ]}
               />
