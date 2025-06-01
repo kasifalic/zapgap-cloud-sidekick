@@ -2,7 +2,13 @@ import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
-import { Zap, Shield, Cog, Cloud, Users, Target, Gauge, Lock, Github, Linkedin, Twitter, MessageCircle, Sparkles, Brain, Cpu, Network, ChevronRight, CheckCircle, AlertCircle } from "lucide-react";
+import { 
+  Zap, Shield, Cog, Cloud, Users, Target, Gauge, Lock, 
+  Github, Linkedin, Twitter, MessageCircle, Sparkles, Brain, 
+  Cpu, Network, ChevronRight, CheckCircle, AlertCircle,
+  MessageSquare, Workflow, UserPlus, Link as LinkIcon, LineChart
+} from "lucide-react";
+import PlatformSection from "@/components/PlatformSection";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 
 // Direct text transition component with smooth animation
@@ -65,36 +71,36 @@ const Index = () => {
 
   const useCases = [
     {
-      title: "DevOps Teams",
-      problem: "Spending hours troubleshooting infrastructure issues across multiple environments",
-      solution: "ZapGap's AI assistant provides instant diagnostics and automated remediation",
-      impact: "75% faster incident resolution",
-      icon: Cog,
-      gradient: "from-blue-500 to-cyan-400"
-    },
-    {
-      title: "SRE Teams", 
-      problem: "Manual monitoring and reactive responses to system failures",
-      solution: "Proactive monitoring with intelligent alerts and self-healing workflows",
-      impact: "99.9% uptime guarantee",
+      title: "SRE Teams",
+      problem: "Frequent late-night alerts were waking the on-call engineer – e.g. a memory leak on a server caused crashes every few weeks. Manually restarting services and cleaning up resources at 2 AM was becoming unsustainable, and critical SLA uptimes were at risk.",
+      solution: "ZapGap was configured to monitor the service and detect the early warning signs of the memory leak. Upon detection of high memory usage, ZapGap's auto-remediation workflow kicked in: it safely restarted the affected service, cleared caches, and even notified the team on Slack of the action taken. All of this happened within seconds of the anomaly.",
+      impact: "MTTR dropped from 30 min to <1 min",
       icon: Shield,
       gradient: "from-purple-500 to-pink-400"
     },
     {
-      title: "IT Admins",
-      problem: "Complex configuration management across hybrid cloud environments", 
-      solution: "Unified control plane with natural language commands",
-      impact: "50% reduction in admin overhead",
-      icon: Network,
-      gradient: "from-green-500 to-teal-400"
+      title: "DevOps Teams",
+      problem: "Developers needed to spin up test environments and run database migrations, but each request to Ops took hours or days in the ticket queue. The platform engineering team was bottlenecked with repetitive requests, pulling them away from strategic projects. This led to frustration on both sides and slower release cycles.",
+      solution: "With ZapGap acting as an AI-powered self-service portal, developers can simply ask for resources or changes themselves. For example, a developer messages ZapGap: 'Create a new QA environment for the payment service.' ZapGap verifies the request against policy, then proceeds to provision a standardized environment. If a request touches production, ZapGap automatically routes an approval request to the relevant DevOps lead.",
+      impact: "40% reduction in ticket workload",
+      icon: Cog,
+      gradient: "from-blue-500 to-cyan-400"
     },
     {
-      title: "CTOs",
-      problem: "Lack of visibility into infrastructure costs and performance",
-      solution: "Real-time dashboards with AI-powered optimization recommendations", 
-      impact: "30% cost savings on average",
+      title: "IT Leadership",
+      problem: "The CTO and IT Head noticed rising cloud costs with many underutilized resources (idle VMs, unattached storage volumes, forgotten dev/test environments running 24/7). Manually tracking and managing cloud sprawl was difficult, and monthly cloud bills were exceeding forecasts.",
+      solution: "ZapGap was employed as a vigilant cost optimizer. It continuously scanned the cloud accounts for low-hanging fruit – instances running under 5% CPU, obsolete snapshots, or dev machines left on over the weekend. Through natural language or scheduled reports, ZapGap would surface opportunities and execute the clean-up tasks with proper logging and notifications.",
+      impact: "25% reduction in AWS costs",
       icon: Brain,
       gradient: "from-orange-500 to-red-400"
+    },
+    {
+      title: "IT Admin/SecOps",
+      problem: "An IT administrator was tasked with keeping the cloud environment compliant with security and operational best practices. This included enforcing encryption, using approved machine images, and adhering to regulatory standards. Manually auditing these across dozens of accounts and resources was tedious and error-prone, leading to occasional compliance gaps.",
+      solution: "ZapGap was configured with a set of policy rules and compliance checks. It continuously scans the infrastructure for deviations: if a developer creates a resource that violates a rule, ZapGap flags it or auto-corrects it per policy. For example, when a new S3 bucket was created without encryption, ZapGap immediately identified it and applied the encryption setting, then notified the team.",
+      impact: "Near-zero security incidents",
+      icon: Network,
+      gradient: "from-green-500 to-teal-400"
     }
   ];
 
@@ -143,10 +149,9 @@ const Index = () => {
             
             <nav className="hidden md:flex items-center space-x-1">
               {[
-                { name: 'Platform', href: '#platform' },
                 { name: 'Features', href: '#features' },
-                { name: 'Use Cases', href: '#use-cases' },
-                { name: 'Company', href: '#company' }
+                { name: 'Platform', href: '#platform' },
+                { name: 'Use Cases', href: '#use-cases' }
               ].map((item) => (
                 <a 
                   key={item.name}
@@ -350,144 +355,161 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Core Benefits Section */}
+      {/* Features Section */}
       <section id="features" className="py-32 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-20">
-            <h2 className="text-5xl mb-6" style={{ fontFamily: '"Space Grotesk", sans-serif', fontWeight: 700, letterSpacing: '0.02em' }}>
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#3ABCF7] via-[#5B7CF7] to-[#8B2FF8] animate-text-shimmer bg-[length:200%_auto]">Why DevOps Teams Choose ZapGap</span>
+            <h2 className="text-5xl mb-6 relative" style={{ fontFamily: '"Space Grotesk", sans-serif', fontWeight: 700, letterSpacing: '0.02em' }}>
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#3ABCF7] via-[#5B7CF7] to-[#8B2FF8] animate-text-shimmer bg-[length:200%_auto] relative">Features
+                {/* Light ray animation */}
+                <div className="absolute bottom-[-8px] left-0 right-0 h-[2px] bg-gradient-to-r from-[#3ABCF7] via-[#5B7CF7] to-[#8B2FF8] animate-[light-ray_3s_ease-in-out_infinite]" style={{ transformOrigin: 'left center' }}></div>
+              </span>
             </h2>
             <p className="text-xl text-gray-400 max-w-3xl mx-auto" style={{ fontFamily: '"Space Grotesk", sans-serif', letterSpacing: '0.01em' }}>
-              Revolutionary AI-powered automation that transforms cloud operations with enterprise-grade intelligence
+              ZapGap brings AI-powered intelligence to your cloud operations with these powerful capabilities
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="mb-16">
+            <p className="text-gray-300 mb-10 leading-relaxed text-lg max-w-5xl mx-auto text-center" style={{ fontFamily: '"Space Grotesk", sans-serif' }}>
+              Each feature is designed to enhance your cloud operations experience, focusing on the benefit to your team.
+              Below are the key features and capabilities of ZapGap:
+            </p>
+          </div>
+
+          <div className="flex flex-col gap-6 max-w-4xl mx-auto">
             {[
               {
-                icon: Gauge,
-                title: "Faster Incident Resolution",
-                description: "AI-powered diagnostics cut resolution time by 75%",
-                gradient: "from-blue-500 to-cyan-400"
+                title: "Conversational Interface (ChatOps)",
+                description: "Interact with your infrastructure in plain English. ZapGap integrates with Slack, Microsoft Teams, and a web chat console, so you can simply ask for what you need.",
+                details: "No more digging through consoles or writing ad-hoc scripts – just type requests like you would to a colleague (e.g. 'Deploy the new build to staging' or 'Is there any CPU alarm right now?') and ZapGap will understand and act. The assistant can ask clarifying questions and confirm critical actions, making the experience truly conversational and user-friendly.",
+                icon: MessageSquare,
+                gradient: "from-blue-400 to-indigo-500"
               },
               {
-                icon: Cog,
-                title: "Self-Service Automation", 
-                description: "Empower teams with natural language workflows",
-                gradient: "from-purple-500 to-pink-400"
+                title: "Workflow Automation",
+                description: "Under the hood, ZapGap can execute multi-step workflows that span multiple services and tools.",
+                details: "For example, when you ask it to 'resolve that alert,' ZapGap might automatically diagnose the issue (check logs, metrics), apply a fix (restart a service, clear a queue), verify the resolution, and even update your incident ticket. These complex playbooks are carried out instantly and consistently. You can also customize or create new workflows – teach ZapGap new actions or sequences with minimal effort, leveraging your existing scripts or Infrastructure-as-Code.",
+                icon: Workflow,
+                gradient: "from-purple-400 to-pink-500"
               },
               {
+                title: "Intelligent Incident Remediation",
+                description: "ZapGap acts as a tireless SRE on your team. It monitors for issues and can either alert you with insights or automatically trigger remediation steps for known problems.",
+                details: "Using both predefined runbooks and AI reasoning, ZapGap can handle many incidents autonomously – such as scaling up resources when traffic spikes or restarting a failed container – and notify your team of the outcome. This dramatically reduces MTTR (Mean Time to Recovery) and midnight pages for on-call engineers. ZapGap's knowledge of past incidents and solutions grows over time, so it becomes more effective at preventing repeat issues.",
+                icon: AlertCircle,
+                gradient: "from-red-400 to-orange-500"
+              },
+              {
+                title: "Self-Service for Developers",
+                description: "With ZapGap, DevOps and IT teams can safely delegate routine tasks. Developers or QA engineers can request operations via ZapGap instead of filing tickets.",
+                details: "For instance, a developer could ask, 'Give me a new testing database' – ZapGap will handle the provisioning and configure the environment according to policy (perhaps requiring an approval if it's production). This controlled self-service boosts team productivity and morale: less waiting, less bottlenecks, and more time for everyone to focus on important work.",
+                icon: UserPlus,
+                gradient: "from-green-400 to-teal-500"
+              },
+              {
+                title: "Multi-Cloud & Hybrid Support",
+                description: "ZapGap isn't limited to a single cloud. While initially optimized for AWS, our roadmap brings the same AI assistance to Azure, GCP, and private clouds.",
+                details: "The platform's modular connectors and agent approach mean ZapGap can unify operations across disparate environments. Manage your AWS, Azure, and on-prem servers all through one assistant. No more context-switching between tools – ZapGap becomes your central command center for all infrastructure.",
                 icon: Cloud,
-                title: "Multi-Cloud & On-Prem Ready",
-                description: "Unified operations across any infrastructure",
-                gradient: "from-green-500 to-teal-400"
+                gradient: "from-cyan-400 to-blue-500"
               },
               {
-                icon: Lock,
-                title: "Secure by Design",
-                description: "Enterprise-grade security with zero-trust architecture",
-                gradient: "from-orange-500 to-red-400"
+                title: "Extensive Integrations",
+                description: "ZapGap plays nicely with the tools you already use. It can integrate with CI/CD pipelines, configuration management, version control, monitoring, and more.",
+                details: "This means ZapGap can trigger builds, merge code, fetch runbook pages, create tickets, or update documentation as part of its actions. The assistant becomes a connective tissue between systems, automating handoffs that used to be manual. Our integration philosophy: if it has an API, we can teach ZapGap to work with it.",
+                icon: LinkIcon,
+                gradient: "from-yellow-400 to-amber-500"
+              },
+              {
+                title: "Security, Compliance & Governance",
+                description: "Enterprise customers can trust that ZapGap is secure by design. All actions require proper authentication and are checked against your security policies.",
+                details: "You can integrate with SSO/LDAP for user identity, ensuring only authorized personnel can invoke certain commands. Audit logs record who asked ZapGap to do what, and when, with full detail – critical for compliance and post-incident reviews. Additionally, ZapGap comes with built-in guardrails: for example, it won't delete databases or expose secrets unless explicitly allowed. It can also enforce tagging standards, verify configs against compliance rules, and suggest remediation if something drifts out of policy.",
+                icon: Shield,
+                gradient: "from-indigo-400 to-violet-500"
+              },
+              {
+                title: "Insights & Optimization Recommendations",
+                description: "Beyond just doing what you ask, ZapGap proactively analyzes usage patterns and configurations to provide recommendations.",
+                details: "It might alert you to underutilized resources ('These 20 VMs have low utilization – consider rightsizing or shutting them down to save costs.') or suggest improvements ('We noticed your access key hasn't rotated in 90 days – would you like ZapGap to handle the rotation?'). These AI-driven insights help you continuously optimize for cost, performance, and security, acting like a smart advisor always keeping an eye on your cloud.",
+                icon: LineChart,
+                gradient: "from-pink-400 to-rose-500"
+              },
+              {
+                title: "Zero-Config Setup & Continuous Learning",
+                description: "Getting started with ZapGap is easy – connect it to your AWS account in minutes via a secure role, and the assistant will immediately begin learning about your environment.",
+                details: "It uses existing data (configurations, monitoring, ticket history) to ramp up its knowledge. Over time, ZapGap's models learn from your team's preferences and the solutions that work best in your context. The more you use it, the more tailored and efficient it becomes. We handle all the AI model tuning and updates behind the scenes (in our managed cloud service), so you always have the latest capabilities without maintenance overhead.",
+                icon: Zap,
+                gradient: "from-emerald-400 to-green-500"
               }
-            ].map((benefit, index) => (
-              <Card key={index} className="modern-card group overflow-hidden">
-                <CardContent className="p-8 text-center relative">
-                  <div className="mb-8 relative">
-                    <div className={`w-20 h-20 mx-auto bg-gradient-to-br ${benefit.gradient} rounded-3xl flex items-center justify-center group-hover:scale-110 transition-transform duration-500 shadow-2xl`}>
-                      <benefit.icon className="w-10 h-10 text-white" />
+            ].map((feature, index) => (
+              <motion.div 
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <div className="bg-gradient-to-b from-gray-900 to-gray-950 border border-gray-800 rounded-xl p-6 mb-6 text-center">
+                  <div className="flex flex-col items-center mb-4">
+                    <div className="mb-4">
+                      <div className="w-16 h-16 bg-gradient-to-br from-[#3ABCF7] to-[#8B2FF8] rounded-xl flex items-center justify-center mx-auto">
+                        <feature.icon className="w-8 h-8 text-white" />
+                      </div>
                     </div>
-                    <div className={`absolute inset-0 bg-gradient-to-br ${benefit.gradient} rounded-3xl blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-500`}></div>
+                    <h3 className="text-xl font-semibold" style={{ fontFamily: '"Space Grotesk", sans-serif', letterSpacing: '0.01em' }}>
+                      <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#3ABCF7] to-[#8B2FF8]">{feature.title}</span>
+                    </h3>
                   </div>
-                  <h3 className="text-2xl mb-4" style={{ fontFamily: '"Space Grotesk", sans-serif', fontWeight: 600, letterSpacing: '0.01em' }}>
-                    <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#3ABCF7] to-[#8B2FF8]">{benefit.title}</span>
-                  </h3>
-                  <p className="text-gray-400 leading-relaxed" style={{ fontFamily: '"Space Grotesk", sans-serif' }}>{benefit.description}</p>
-                </CardContent>
-              </Card>
+                  <div>
+                    <p className="text-gray-300 mb-3 mx-auto max-w-2xl" style={{ fontFamily: '"Space Grotesk", sans-serif' }}>
+                      {feature.description}
+                    </p>
+                    <p className="text-gray-400 text-sm leading-relaxed mx-auto max-w-2xl" style={{ fontFamily: '"Space Grotesk", sans-serif' }}>
+                      {feature.details}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
       {/* Platform Explainer */}
-      <section id="platform" className="py-32 relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-20">
-            <h2 className="text-5xl mb-6" style={{ fontFamily: '"Space Grotesk", sans-serif', fontWeight: 700, letterSpacing: '0.02em' }}>
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#3ABCF7] via-[#5B7CF7] to-[#8B2FF8] animate-text-shimmer bg-[length:200%_auto]">The ZapGap Platform</span>
-            </h2>
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto" style={{ fontFamily: '"Space Grotesk", sans-serif', letterSpacing: '0.01em' }}>
-              Agent-Orchestrator-Cloud architecture that evolves with your infrastructure
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {[
-              {
-                title: "Context Graph",
-                description: "AI-powered mapping of your entire infrastructure ecosystem with real-time dependency analysis",
-                icon: Target,
-                features: ["Real-time topology mapping", "Dependency analysis", "Performance correlation"]
-              },
-              {
-                title: "ChatOps",
-                description: "Natural language interface for complex operations with conversational AI that understands context",
-                icon: MessageCircle,
-                features: ["Natural language commands", "Context-aware responses", "Multi-platform integration"]
-              },
-              {
-                title: "Workflow Automation",
-                description: "Intelligent automation that learns from your patterns and optimizes continuously",
-                icon: Cog,
-                features: ["Self-learning workflows", "Pattern recognition", "Continuous optimization"]
-              },
-              {
-                title: "Role-Based Access",
-                description: "Granular permissions with enterprise-grade security and compliance automation",
-                icon: Shield,
-                features: ["Granular permissions", "Compliance automation", "Audit trails"]
-              }
-            ].map((feature, index) => (
-              <Card key={index} className="modern-card group">
-                <CardContent className="p-10">
-                  <div className="flex items-start space-x-6">
-                    <div className="relative">
-                      <div className="w-16 h-16 bg-gradient-to-br from-[#3ABCF7] to-[#8B2FF8] rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
-                        <feature.icon className="w-8 h-8 text-white" />
-                      </div>
-                      <div className="absolute inset-0 bg-gradient-to-br from-[#3ABCF7] to-[#8B2FF8] rounded-2xl blur-xl opacity-0 group-hover:opacity-40 transition-opacity duration-500"></div>
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-2xl mb-4" style={{ fontFamily: '"Space Grotesk", sans-serif', fontWeight: 600, letterSpacing: '0.01em' }}>
-                        <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#3ABCF7] to-[#8B2FF8]">{feature.title}</span>
-                      </h3>
-                      <p className="text-gray-400 mb-6 leading-relaxed" style={{ fontFamily: '"Space Grotesk", sans-serif' }}>{feature.description}</p>
-                      <ul className="space-y-2">
-                        {feature.features.map((item, idx) => (
-                          <li key={idx} className="flex items-center text-gray-300" style={{ fontFamily: '"Space Grotesk", sans-serif' }}>
-                            <div className="w-2 h-2 bg-gradient-to-r from-[#3ABCF7] to-[#8B2FF8] rounded-full mr-3 animate-pulse"></div>
-                            {item}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
+      <PlatformSection />
 
       {/* Use Case Highlights */}
       <section id="use-cases" className="py-32 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-20">
-            <h2 className="text-5xl mb-6" style={{ fontFamily: '"Space Grotesk", sans-serif', fontWeight: 700, letterSpacing: '0.02em' }}>
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#3ABCF7] via-[#5B7CF7] to-[#8B2FF8] animate-text-shimmer bg-[length:200%_auto]">Built for Every Cloud Team</span>
+            <h2 className="text-5xl mb-6 relative" style={{ fontFamily: '"Space Grotesk", sans-serif', fontWeight: 700, letterSpacing: '0.02em' }}>
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#3ABCF7] via-[#5B7CF7] to-[#8B2FF8] animate-text-shimmer bg-[length:200%_auto] relative">ZapGap in Action
+                {/* Light ray animation */}
+                <div className="absolute bottom-[-8px] left-0 right-0 h-[2px] bg-gradient-to-r from-[#3ABCF7] via-[#5B7CF7] to-[#8B2FF8] animate-[light-ray_3s_ease-in-out_infinite]" style={{ transformOrigin: 'left center' }}></div>
+              </span>
             </h2>
-            <p className="text-xl text-gray-400" style={{ fontFamily: '"Space Grotesk", sans-serif', letterSpacing: '0.01em' }}>
-              See how ZapGap transforms operations across different roles
+            <p className="text-xl text-gray-400 max-w-4xl mx-auto" style={{ fontFamily: '"Space Grotesk", sans-serif', letterSpacing: '0.01em' }}>
+              Real-world scenarios showing how different roles and teams leverage ZapGap. Each example demonstrates the problem faced, how ZapGap provides a solution, and the measurable impact on the organization.
             </p>
+            
+            <motion.div
+              className="mt-8 mb-8 flex justify-center"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5 }}
+            >
+              <ModernTextTransition 
+                texts={[
+                  "CTOs",
+                  "DevOps Engineers",
+                  "SREs",
+                  "Platform Teams",
+                  "IT Admins",
+                  "Cloud Architects"
+                ]}
+              />
+            </motion.div>
           </div>
 
           <div className="flex flex-wrap justify-center gap-4 mb-16">
@@ -512,48 +534,43 @@ const Index = () => {
           <Card className="max-w-6xl mx-auto modern-card overflow-hidden">
             <CardContent className="p-12">
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-                <div className="space-y-6">
-                  <div className="flex items-center space-x-4">
+                <div className="space-y-6 text-center">
+                  <div className="flex flex-col items-center justify-center space-y-4">
                     <motion.div 
-                      className={`w-12 h-12 bg-gradient-to-r ${useCases[activeUseCase].gradient} rounded-xl flex items-center justify-center`}
+                      className="w-16 h-16 bg-gradient-to-r from-[#3ABCF7] to-[#8B2FF8] rounded-xl flex items-center justify-center"
                       initial={{ scale: 0.8, opacity: 0 }}
                       animate={{ scale: 1, opacity: 1 }}
                       transition={{ duration: 0.5 }}
                     >
-                      {(() => {
-                        const IconComponent = useCases[activeUseCase].icon;
-                        return (
-                          <motion.div
-                            initial={{ rotate: 0 }}
-                            animate={{ rotate: 360 }}
-                            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                          >
-                            <IconComponent className="w-6 h-6 text-white" />
-                          </motion.div>
-                        );
-                      })()}
+                      <motion.div
+                        initial={{ rotate: 0 }}
+                        animate={{ rotate: 360 }}
+                        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                      >
+                        <AlertCircle className="w-8 h-8 text-white" />
+                      </motion.div>
                     </motion.div>
                     <h4 className="text-xl" style={{ fontFamily: '"Space Grotesk", sans-serif', fontWeight: 600, letterSpacing: '0.01em' }}>
                       <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#3ABCF7] to-[#8B2FF8]">Problem</span>
                     </h4>
                   </div>
-                  <p className="text-gray-400 leading-relaxed" style={{ fontFamily: '"Space Grotesk", sans-serif' }}>{useCases[activeUseCase].problem}</p>
+                  <p className="text-gray-400 leading-relaxed mx-auto" style={{ fontFamily: '"Space Grotesk", sans-serif' }}>{useCases[activeUseCase].problem}</p>
                 </div>
-                <div className="space-y-6">
-                  <div className="flex items-center space-x-4">
-                    <div className="w-12 h-12 bg-gradient-to-r from-[#3ABCF7] to-[#8B2FF8] rounded-xl flex items-center justify-center">
-                      <Zap className="w-6 h-6 text-white" />
+                <div className="space-y-6 text-center">
+                  <div className="flex flex-col items-center justify-center space-y-4">
+                    <div className="w-16 h-16 bg-gradient-to-r from-[#3ABCF7] to-[#8B2FF8] rounded-xl flex items-center justify-center">
+                      <Zap className="w-8 h-8 text-white" />
                     </div>
                     <h4 className="text-xl" style={{ fontFamily: '"Space Grotesk", sans-serif', fontWeight: 600, letterSpacing: '0.01em' }}>
                       <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#3ABCF7] to-[#8B2FF8]">ZapGap Solution</span>
                     </h4>
                   </div>
-                  <p className="text-gray-400 leading-relaxed" style={{ fontFamily: '"Space Grotesk", sans-serif' }}>{useCases[activeUseCase].solution}</p>
+                  <p className="text-gray-400 leading-relaxed mx-auto" style={{ fontFamily: '"Space Grotesk", sans-serif' }}>{useCases[activeUseCase].solution}</p>
                 </div>
-                <div className="space-y-6">
-                  <div className="flex items-center space-x-4">
-                    <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-400 rounded-xl flex items-center justify-center">
-                      <Target className="w-6 h-6 text-white" />
+                <div className="space-y-6 text-center">
+                  <div className="flex flex-col items-center justify-center space-y-4">
+                    <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-400 rounded-xl flex items-center justify-center">
+                      <Target className="w-8 h-8 text-white" />
                     </div>
                     <h4 className="text-xl" style={{ fontFamily: '"Space Grotesk", sans-serif', fontWeight: 600, letterSpacing: '0.01em' }}>
                       <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-500 to-emerald-400">Impact</span>
