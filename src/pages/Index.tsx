@@ -270,7 +270,7 @@ const Index = () => {
           <div className="absolute w-full h-full">
             {/* Static nodes */}
             <div className="absolute top-[15%] left-[20%] w-4 h-4 bg-gradient-to-r from-[#3ABCF7] to-[#5B7CF7] rounded-full blur-[2px] opacity-40 animate-[neural-pulse_2s_ease-in-out_infinite]"></div>
-            <div className="absolute top-[30%] left-[40%] w-5 h-5 bg-gradient-to-r from-[#5B7CF7] to-[#8B2FF8] rounded-full blur-[2px] opacity-35 animate-[neural-pulse_2.5s_ease-in-out_infinite_0.3s]"></div>
+            <div className="absolute top-[30%] left-[40%] w-5 h-5 bg-gradient-to-r from-[#5B7CF7] to-[#8B2FF8] rounded-full blur-[2px] opacity-35 animate-[neural-pulse_2.5s_ease-in-out_infinite_0.5s]"></div>
             <div className="absolute top-[60%] left-[25%] w-3 h-3 bg-gradient-to-r from-[#3ABCF7] to-[#8B2FF8] rounded-full blur-[2px] opacity-40 animate-[neural-pulse_1.8s_ease-in-out_infinite_0.5s]"></div>
             <div className="absolute top-[20%] left-[70%] w-4 h-4 bg-gradient-to-r from-[#3ABCF7] to-[#5B7CF7] rounded-full blur-[2px] opacity-35 animate-[neural-pulse_2.2s_ease-in-out_infinite_0.7s]"></div>
             <div className="absolute top-[70%] left-[65%] w-5 h-5 bg-gradient-to-r from-[#5B7CF7] to-[#8B2FF8] rounded-full blur-[2px] opacity-40 animate-[neural-pulse_2.4s_ease-in-out_infinite_0.2s]"></div>
@@ -435,19 +435,19 @@ const Index = () => {
       <section id="features" className="py-32 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-20">
-            <h2 className="text-5xl mb-6 relative" style={{ fontFamily: '"Space Grotesk", sans-serif', fontWeight: 700, letterSpacing: '0.02em' }}>
+            <h2 className="text-4xl mb-6 relative" style={{ fontFamily: '"Space Grotesk", sans-serif', fontWeight: 700, letterSpacing: '0.02em' }}>
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#3ABCF7] via-[#5B7CF7] to-[#8B2FF8] animate-text-shimmer bg-[length:200%_auto] relative">Features
                 {/* Light ray animation */}
                 <div className="absolute bottom-[-8px] left-0 right-0 h-[2px] bg-gradient-to-r from-[#3ABCF7] via-[#5B7CF7] to-[#8B2FF8] animate-[light-ray_3s_ease-in-out_infinite]" style={{ transformOrigin: 'left center' }}></div>
               </span>
             </h2>
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto" style={{ fontFamily: '"Space Grotesk", sans-serif', letterSpacing: '0.01em' }}>
+            <p className="text-lg text-gray-400 max-w-3xl mx-auto" style={{ fontFamily: '"Space Grotesk", sans-serif', letterSpacing: '0.01em' }}>
               ZapGap brings AI-powered intelligence to your cloud operations with these powerful capabilities
             </p>
           </div>
 
           <div className="mb-16">
-            <p className="text-gray-300 mb-10 leading-relaxed text-lg max-w-5xl mx-auto text-center" style={{ fontFamily: '"Space Grotesk", sans-serif' }}>
+            <p className="text-gray-300 mb-10 leading-relaxed text-base max-w-5xl mx-auto text-center" style={{ fontFamily: '"Space Grotesk", sans-serif' }}>
               Each feature is designed to enhance your cloud operations experience, focusing on the benefit to your team.
               Click on any feature to learn more details.
             </p>
@@ -469,14 +469,14 @@ const Index = () => {
                   <Card className="bg-gradient-to-b from-gray-900 to-gray-950 border border-gray-800 rounded-xl overflow-hidden hover:border-gray-700 transition-all duration-300">
                     <CollapsibleTrigger asChild>
                       <div className="w-full cursor-pointer">
-                        <CardContent className="p-6">
+                        <CardContent className="p-5">
                           <div className="flex items-center justify-between">
-                            <div className="flex items-center space-x-4">
-                              <div className="w-12 h-12 bg-gradient-to-br from-[#3ABCF7] to-[#8B2FF8] rounded-xl flex items-center justify-center">
-                                <feature.icon className="w-6 h-6 text-white" />
+                            <div className="flex items-center space-x-3">
+                              <div className="w-10 h-10 bg-gradient-to-br from-[#3ABCF7] to-[#8B2FF8] rounded-lg flex items-center justify-center">
+                                <feature.icon className="w-5 h-5 text-white" />
                               </div>
                               <div>
-                                <h3 className="text-xl font-semibold" style={{ fontFamily: '"Space Grotesk", sans-serif', letterSpacing: '0.01em' }}>
+                                <h3 className="text-lg font-semibold" style={{ fontFamily: '"Space Grotesk", sans-serif', letterSpacing: '0.01em' }}>
                                   <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#3ABCF7] to-[#8B2FF8]">{feature.title}</span>
                                 </h3>
                               </div>
@@ -485,7 +485,7 @@ const Index = () => {
                               animate={{ rotate: openFeatures.includes(index) ? 180 : 0 }}
                               transition={{ duration: 0.2 }}
                             >
-                              <ChevronDown className="w-5 h-5 text-gray-400" />
+                              <ChevronDown className="w-4 h-4 text-gray-400" />
                             </motion.div>
                           </div>
                         </CardContent>
@@ -493,12 +493,12 @@ const Index = () => {
                     </CollapsibleTrigger>
                     
                     <CollapsibleContent>
-                      <div className="px-6 pb-6 border-t border-gray-800/50 pt-4">
+                      <div className="px-5 pb-5 border-t border-gray-800/50 pt-4">
                         <div className="space-y-3">
-                          <p className="text-gray-300" style={{ fontFamily: '"Space Grotesk", sans-serif' }}>
+                          <p className="text-gray-300 text-sm" style={{ fontFamily: '"Space Grotesk", sans-serif' }}>
                             {feature.description}
                           </p>
-                          <p className="text-gray-400 text-sm leading-relaxed" style={{ fontFamily: '"Space Grotesk", sans-serif' }}>
+                          <p className="text-gray-400 text-xs leading-relaxed" style={{ fontFamily: '"Space Grotesk", sans-serif' }}>
                             {feature.details}
                           </p>
                         </div>
